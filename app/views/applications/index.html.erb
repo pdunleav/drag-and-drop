@@ -1,0 +1,18 @@
+<div class='row' data-controller='draggable'>
+  <% %w(saved applied interviewed accepted).each do |status| %>
+    <div class='col'>
+      <div class='card'>
+        <h5 class='card-title'><%= status %></h5>
+        <div class='card-body'>
+          <ul class="card-text dropzone" data-target='draggable.column' data-status='<%= status %>'>
+            <% @applications.where(status: status).each do |app| %>
+              <li data-target="draggable.item" data-url="<%= application_path(app) %>">
+                <%= app.company_name %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
